@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>حبيب عيوني</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #3b0a45, #0f1c2e);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  direction: rtl;
+  overflow: hidden;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,105,180,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #ff8ccf;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin: 15px 0;
+  text-align: center;
+}
+
+button {
+  background: linear-gradient(90deg, #ff5fa2, #b36bff);
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.signature {
+  margin-top: 20px;
+  color: #ffb6e6;
+  font-size: 15px;
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  color: #ff6fae;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 موسيقى بحبك وحشتيني (Instrumental) -->
+<iframe id="song" class="hidden"
+src="https://www.youtube.com/embed/9x7zZPpQK9Y?autoplay=1&loop=1"
+allow="autoplay">
+</iframe>
+
+<!-- شاشة الباسورد -->
+<div class="card" id="lock">
+  <h1>💖 رسالة ليك 💖</h1>
+  <p>جاهز تفتح قلبي؟</p>
+  <input type="password" id="pass" placeholder="اكتب الباسورد">
+  <button onclick="openHeart()">افتح الرسالة 💌</button>
+</div>
+
+<!-- الرسالة -->
+<div class="card hidden" id="heart">
+  <h1>❤️ حبيب عيوني ❤️</h1>
+
+  <div class="message">
+    حبيب عيوني…<br><br>
+    أنا آسفة، آسفة من قلبي مش كلمة وخلاص.<br>
+    يمكن غلطت، ويمكن ماعرفتش أعبّر صح،<br>
+    بس والله ما كان قصدي أوجعك ولا أزعلك.<br><br>
+
+    وحشتني أوي…<br>
+    وحشني صوتك، وضحكتك، وطريقتك وانت بتطمني.<br><br>
+
+    أنا محتاجاك، ومش بكابر.<br>
+    لو في إيدي أرجّع ثانية قبل الزعل كنت عملت كده.<br><br>
+
+    سامحني وخليك جنبي…<br>
+    أنا قلبي لسه ما اختارش غيرك ❤️
+  </div>
+
+  <button onclick="forgive()">سامحتك 🤍</button>
+
+  <div id="forgiveMsg" class="signature hidden">
+    كده قلبي ارتاح…<br>
+    وبقيت أتنفس من جديد 🥹❤️<br>
+    — بطوطه
+  </div>
+</div>
+
+<script>
+function openHeart() {
+  const pass = document.getElementById("pass").value;
+  if (pass === "حبيب عيوني") {
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("heart").classList.remove("hidden");
+    document.getElementById("song").classList.remove("hidden");
+    createHearts();
+  } else {
+    alert("الباسورد غلط يا روحي 💔");
+  }
+}
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 500);
+}
+
+function forgive() {
+  document.getElementById("forgiveMsg").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
